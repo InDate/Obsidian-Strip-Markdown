@@ -4,21 +4,31 @@
 	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
 	"main": "main.js",
 	"scripts": {
-		"dev": "node esbuild.config.mjs",
+		"dev": "tsc --watch",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"copy": "ts-node scripts/copy-plugin.mjs",
+		"release": "npm run build && npm run copy"
 	},
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/fs-extra": "^11.0.4",
 		"@types/node": "^16.11.6",
 		"@typescript-eslint/eslint-plugin": "5.29.0",
 		"@typescript-eslint/parser": "5.29.0",
 		"builtin-modules": "3.3.0",
+		"dotenv": "^16.4.5",
 		"esbuild": "0.17.3",
+		"fs-extra": "^11.2.0",
 		"obsidian": "latest",
+		"ts-node": "^10.9.2",
 		"tslib": "2.4.0",
 		"typescript": "4.7.4"
+	},
+	"dependencies": {
+		"fs": "^0.0.1-security",
+		"path": "^0.12.7"
 	}
 }
